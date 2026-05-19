@@ -1,4 +1,4 @@
-from fastapi_users_conf.authentication import AuthenticationBackend
+from fastapi_users.authentication import AuthenticationBackend
 
 from core.authentication.transport import bearer_transport
 from .strategy import get_database_strategy

@@ -18,4 +18,4 @@ class AccessToken(Base, SQLAlchemyBaseAccessTokenTable):
 
     @classmethod
     def get_db(cls, session: "AsyncSession"):
-        return SQLAlchemyAccessTokenDatabase(session, AccessToken)
+        return SQLAlchemyAccessTokenDatabase(session, cls)

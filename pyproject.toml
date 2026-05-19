@@ -12,3 +12,4 @@ fastapi-users = {extras = ["sqlalchemy"], version = "^15.0.5"}
 asyncpg = "^0.31.0"
 greenlet = "^3.5.0"
 black = "^26.5.1"
+pandas = "^3.0.3"

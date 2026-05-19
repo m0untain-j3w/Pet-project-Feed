@@ -8,6 +8,6 @@ from .base import Base
 class AccessToken(Base, SQLAlchemyBaseAccessTokenTable):
     user_id: Mapped[int] = mapped_column(
         Integer,
-        ForeignKey(column='user.id', ondelete="cascade"),
+        ForeignKey(column='users.id', ondelete="cascade"),
         nullable=False,
     )

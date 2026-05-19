@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from core.config import settings
 from core.models import db_helper
 from core.schemas.movie import MovieRead
 from core.services.movie_service import MovieService
 
 router = APIRouter(
-    prefix="/movies",
+    prefix=settings.api.movies,
     tags=["Movies"],
 )
 

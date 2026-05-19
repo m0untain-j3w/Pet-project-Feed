@@ -2,7 +2,7 @@ from fastapi_users_db_sqlalchemy.access_token import SQLAlchemyBaseAccessTokenTa
 from sqlalchemy import Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
-from core.models import Base
+from .base import Base
 
 
 class AccessToken(Base, SQLAlchemyBaseAccessTokenTable):

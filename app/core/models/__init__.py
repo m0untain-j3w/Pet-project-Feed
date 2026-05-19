@@ -3,9 +3,11 @@ __all__ = (
     "Base",
     "User",
     "AccessToken",
+    "Movie",
 )
 
 from .access_tokens import AccessToken
 from .db_helper import db_helper
 from .base import Base
+from .movies import Movie
 from .users import User

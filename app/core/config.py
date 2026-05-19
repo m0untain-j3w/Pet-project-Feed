@@ -11,6 +11,14 @@ class RunConfig(BaseModel):
 
 class ApiConfig(BaseModel):
     prefix: str = "/api"
+    auth: str = "/auth"
+
+    @property
+    def bearer_token_url(self) -> str:
+        # /api/auth/login
+        parts = (self.prefix, self.auth, "/login")
+        path = "".join(parts)
+        return path.removeprefix("/")
 
 
 class DatabaseConfig(BaseModel):

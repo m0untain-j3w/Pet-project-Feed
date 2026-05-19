@@ -54,6 +54,7 @@ class Settings(BaseSettings):
     api: ApiConfig = ApiConfig()
     db: DatabaseConfig
     model_path: Path = Path("core/models/model.joblib")
+    access_token: AccessToken
 
 
 settings = Settings()

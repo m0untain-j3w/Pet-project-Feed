@@ -3,6 +3,9 @@ from pathlib import Path
 from pydantic import PostgresDsn, BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+ENV_FILE = BASE_DIR / "app/.env"
+
 
 class RunConfig(BaseModel):
     host: str = "0.0.0.0"
@@ -46,7 +49,7 @@ class AccessToken(BaseModel):
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         case_sensitive=False,
         env_nested_delimiter="__",
         env_prefix="APP_CONFIG__",

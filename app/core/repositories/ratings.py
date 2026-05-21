@@ -14,7 +14,7 @@ class RatingRepository:
         user_id: int,
         movie_id: int,
         rating: Rating,
-    ) -> Rating:
+    ):
         raiting_obj = Rating(
             user_id=user_id,
             movie_id=movie_id,
@@ -22,8 +22,19 @@ class RatingRepository:
         )
         session.add(raiting_obj)
         await session.commit()
-        await session.refresh(raiting_obj)
-        return raiting_obj
+
+    @staticmethod
+    async def update(
+        session: AsyncSession,
+        rating_id: int,
+        new_rating: Rating,
+    ) -> None:
+        await session.execute(
+            select(Rating)
+            .where(Rating.id == rating_id)
+            .update({Rating.rating: new_rating})
+        )
+        await session.commit()
 
     @staticmethod
     async def get_user_ratings(
@@ -36,7 +47,7 @@ class RatingRepository:
             .order_by(Rating.created_at.desc())
         )
         return result.scalars().all()
-    
+
     @staticmethod
     async def get_user_movie_rating(
         session: AsyncSession,
@@ -44,8 +55,7 @@ class RatingRepository:
         movie_id: int,
     ) -> Rating | None:
         result = await session.execute(
-            select(Rating)
-            .where(
+            select(Rating).where(
                 Rating.user_id == user_id,
                 Rating.movie_id == movie_id,
             )

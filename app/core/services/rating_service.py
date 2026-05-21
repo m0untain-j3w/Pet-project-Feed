@@ -12,9 +12,6 @@ class RatingService:
         user_id: int,
         raiting_data: RatingCreate,
     ) -> None:
-        if not 1 <= raiting_data.rating <= 5:
-            raise ValueError("Rating must be between 1 and 5")
-
         existing = await RatingRepository.get_user_movie_rating(
             session=session,
             user_id=user_id,

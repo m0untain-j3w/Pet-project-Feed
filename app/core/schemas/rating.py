@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class RatingCreate(BaseModel):
     movie_id: int
-    rating: int
+    rating: int = Field(ge=1, le=5)
 
 
 class RatingRead(BaseModel):

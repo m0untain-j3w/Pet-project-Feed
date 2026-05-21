@@ -16,6 +16,7 @@ class ApiConfig(BaseModel):
     prefix: str = "/api"
     auth: str = "/auth"
     movies: str = "/movies"
+    ratings: str = "/ratings"
 
     @property
     def bearer_token_url(self) -> str:

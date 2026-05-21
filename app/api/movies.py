@@ -1,3 +1,5 @@
+from typing import Annotated
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -10,16 +12,19 @@ router = APIRouter(
     prefix=settings.api.movies,
     tags=["Movies"],
 )
-
+ 
 
 @router.get(
     "",
     response_model=list[MovieRead],
 )
 async def get_movies(
-        limit: int = 20,
-        offset: int = 0,
-        session: AsyncSession = Depends(db_helper.session_getter),
+    session: Annotated[
+        "AsyncSession",
+        Depends(db_helper.session_getter),
+    ],
+    limit: int = 20,
+    offset: int = 0,
 ):
     return await MovieService.get_movies(
         session=session,
@@ -33,8 +38,11 @@ async def get_movies(
     response_model=MovieRead,
 )
 async def get_movie(
-        movie_id: int,
-        session: AsyncSession = Depends(db_helper.session_getter),
+    movie_id: int,
+    session: Annotated[
+        "AsyncSession",
+        Depends(db_helper.session_getter),
+    ],
 ):
     movie = await MovieService.get_movie(
         session=session,

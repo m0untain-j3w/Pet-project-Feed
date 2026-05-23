@@ -13,7 +13,7 @@ class RatingRepository:
         session: AsyncSession,
         user_id: int,
         movie_id: int,
-        rating: Rating,
+        rating: int,
     ):
         raiting_obj = Rating(
             user_id=user_id,
@@ -27,7 +27,7 @@ class RatingRepository:
     async def update(
         session: AsyncSession,
         rating_id: int,
-        new_rating: Rating,
+        new_rating: int,
     ) -> None:
         await session.execute(
             select(Rating)

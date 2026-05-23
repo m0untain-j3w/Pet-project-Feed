@@ -10,26 +10,26 @@ class RatingService:
     async def rate_movie(
         session: AsyncSession,
         user_id: int,
-        raiting_data: RatingCreate,
+        rating_data: RatingCreate,
     ) -> None:
         existing = await RatingRepository.get_user_movie_rating(
             session=session,
             user_id=user_id,
-            movie_id=raiting_data.movie_id,
+            movie_id=rating_data.movie_id,
         )
 
         if existing:
             await RatingRepository.update(
                 session=session,
                 rating_id=existing.id,
-                new_rating=raiting_data.rating,
+                new_rating=rating_data.rating,
             )
         else:
             await RatingRepository.create(
                 session=session,
                 user_id=user_id,
-                movie_id=raiting_data.movie_id,
-                rating=raiting_data.rating,
+                movie_id=rating_data.movie_id,
+                rating=rating_data.rating,
             )
 
     @staticmethod

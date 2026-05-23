@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel, Field
 
 
@@ -11,4 +13,4 @@ class RatingRead(BaseModel):
     user_id: int
     movie_id: int
     rating: int
-    created_at: int
+    created_at: datetime

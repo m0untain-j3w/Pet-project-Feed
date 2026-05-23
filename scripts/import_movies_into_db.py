@@ -10,7 +10,7 @@ from app.core.models import (
 )
 
 
-async def import_movies_to_db():
+async def import_movies_into_db():
     DATASET_PATH = Path("data/raw/ml-100k/u.item")
     GENRES_PATH = Path("data/raw/ml-100k/u.genre")
 
@@ -70,4 +70,4 @@ async def import_movies_to_db():
 
 
 if __name__ == "__main__":
-    asyncio.run(import_movies_to_db())
+    asyncio.run(import_movies_into_db())

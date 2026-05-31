@@ -25,7 +25,7 @@ class MovieRepository:
         session: AsyncSession,
         movie_id: int,
     ):
-        result = session.execute(
+        result = await session.execute(
             select(Movie).where(Movie.id == movie_id),
         )
         return result.scalar_one_or_none()

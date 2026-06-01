@@ -1,5 +1,7 @@
+import logging
 from pathlib import Path
 
+from app.core.logger import setup_logging
 from ml.dataset_loader import load_movielens_items
 
 
@@ -11,8 +13,10 @@ def build_genre_features(
     df = load_movielens_items(movies_path, genres_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_parquet(output_path, index=False)
-    print(f"Saved {len(df)} movies to {output_path}")
+    log.info(f"Saved {len(df)} movies to {output_path}")
 
 
 if __name__ == "__main__":
+    setup_logging()
+    log = logging.getLogger(__name__)
     build_genre_features()

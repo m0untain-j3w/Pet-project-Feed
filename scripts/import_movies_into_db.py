@@ -1,7 +1,9 @@
 import asyncio
+import logging
 
 from sqlalchemy import insert
 
+from app.core.logger import setup_logging
 from app.core.models import Movie, db_helper
 from ml.dataset_loader import load_movielens_items
 
@@ -19,4 +21,6 @@ async def import_movies_into_db():
 
 
 if __name__ == "__main__":
+    setup_logging()
+    log = logging.getLogger(__name__)
     asyncio.run(import_movies_into_db())

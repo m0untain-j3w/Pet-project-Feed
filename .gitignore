@@ -1,8 +1,9 @@
-.venv
 **/.DS_Store
-.idea
 **/__pycache__/
-data/
+.venv
+.idea
 .vscode/
+data/
+ml/models
 гайдлайн.txt
 TODO.md

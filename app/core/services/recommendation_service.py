@@ -2,12 +2,22 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.schemas.recommendation import MovieWithScore
 from app.core.repositories.movies import MovieRepository
 from app.core.repositories.ratings import RatingRepository
-from ml.content_based.inference.recommend import Recommender
+from ml.content_based.inference.recommend import CBRecommender
+from ml.collaborative.inference.recommend import CollabRecommender
+from ml.hybrid.recommend import recommend as hybrid_recommend
+from ml.hybrid.recommend import recommend_multiple as hybrid_recommend_multiple
 
 
 class RecommendationService:
-    def __init__(self, recommender: Recommender):
-        self.recommender = recommender
+    def __init__(
+        self,
+        cb: CBRecommender,
+        cf: CollabRecommender,
+        min_ratings: int = 10,
+    ):
+        self.cb = cb
+        self.cf = cf
+        self.min_ratings = min_ratings
 
     async def for_user(
         self,
@@ -23,7 +33,9 @@ class RecommendationService:
             return []
 
         liked_ids = [r.movie_id for r in ratings if r.rating >= threshold]
-        results = self.recommender.recommend_multiple(liked_ids, top_n=top_n)
+        results = hybrid_recommend_multiple(
+            liked_ids, self.cb, self.cf, top_n, self.min_ratings
+        )
 
         return await self._enrich(session, results)
 
@@ -33,7 +45,9 @@ class RecommendationService:
         movie_id: int,
         top_n: int = 10,
     ) -> list[MovieWithScore]:
-        results = self.recommender.recommend(movie_id, top_n=top_n)
+        results = hybrid_recommend(
+            movie_id, self.cb, self.cf, top_n, self.min_ratings
+        )
         return await self._enrich(session, results)
 
     @staticmethod

@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.repositories.movies import MovieRepository
+from app.core.repositories.movies import MovieRepository
 
 
 class MovieService:

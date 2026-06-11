@@ -2,8 +2,8 @@ from typing import Annotated, TYPE_CHECKING
 
 from fastapi import Depends
 
-from api.dependencies.users import get_users_db
-from core.authentication.user_manager import UserManager
+from app.api.dependencies.users import get_users_db
+from app.core.authentication.user_manager import UserManager
 
 if TYPE_CHECKING:
     from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase

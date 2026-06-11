@@ -3,8 +3,8 @@ from datetime import datetime, timezone
 from sqlalchemy import ForeignKey, Integer, DateTime
 from sqlalchemy.orm import mapped_column
 
-from .base import Base
-from .mixins.id_int_pk import IdIntPkMixin
+from app.core.models.base import Base
+from app.core.models.mixins.id_int_pk import IdIntPkMixin
 
 
 class Rating(Base, IdIntPkMixin):

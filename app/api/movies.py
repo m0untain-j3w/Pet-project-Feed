@@ -3,10 +3,10 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.config import settings
-from core.models import db_helper
-from core.schemas.movie import MovieRead
-from core.services.movie_service import MovieService
+from app.core.config import settings
+from app.core.models import db_helper
+from app.core.schemas.movie import MovieRead
+from app.core.services.movie_service import MovieService
 
 router = APIRouter(
     prefix=settings.api.movies,

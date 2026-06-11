@@ -4,7 +4,7 @@ from fastapi_users_db_sqlalchemy import (
 )
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from .base import Base
+from app.core.models.base import Base
 from app.core.models.mixins.id_int_pk import IdIntPkMixin
 
 

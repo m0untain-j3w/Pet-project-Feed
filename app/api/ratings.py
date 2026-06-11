@@ -4,11 +4,11 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.models.users import User
-from core.models import db_helper
-from core.schemas.rating import RatingCreate, RatingRead
-from core.config import settings
-from api.dependencies.fastapi_users_conf import current_user
-from core.services.rating_service import RatingService
+from app.core.models import db_helper
+from app.core.schemas.rating import RatingCreate, RatingRead
+from app.core.config import settings
+from app.api.dependencies.fastapi_users_conf import current_user
+from app.core.services.rating_service import RatingService
 
 router = APIRouter(
     prefix=settings.api.ratings,

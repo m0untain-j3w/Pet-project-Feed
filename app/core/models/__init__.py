@@ -7,9 +7,9 @@ __all__ = (
     "Rating",
 )
 
-from .access_tokens import AccessToken
-from .db_helper import db_helper
-from .base import Base
-from .movies import Movie
-from .users import User
-from .ratings import Rating
+from app.core.models.access_tokens import AccessToken
+from app.core.models.db_helper import db_helper
+from app.core.models.base import Base
+from app.core.models.movies import Movie
+from app.core.models.users import User
+from app.core.models.ratings import Rating

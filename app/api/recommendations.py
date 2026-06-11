@@ -5,7 +5,7 @@ from app.core.config import settings
 from app.core.models import db_helper
 from app.core.models.users import User
 from app.core.services.recommendation_service import RecommendationService
-from app.core.schemas import MovieWithScore
+from app.core.schemas.recommendation import MovieWithScore
 from app.api.dependencies.fastapi_users_conf import current_user
 from ml.content_based.inference.recommend import Recommender
 from sqlalchemy.ext.asyncio import AsyncSession

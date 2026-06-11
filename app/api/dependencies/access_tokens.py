@@ -3,8 +3,8 @@ from typing import Annotated
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.models import db_helper
-from core.models.access_tokens import AccessToken
+from app.core.models import db_helper
+from app.core.models.access_tokens import AccessToken
 
 
 async def get_access_token_db(

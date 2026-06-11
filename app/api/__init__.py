@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 
 from app.core.config import settings
-from .auth import router as auth_router
-from .movies import router as movies_router
-from .ratings import router as ratings_router
-from .recommendations import router as recommendations_router
+from app.api.auth import router as auth_router
+from app.api.movies import router as movies_router
+from app.api.ratings import router as ratings_router
+from app.api.recommendations import router as recommendations_router
 
 router = APIRouter(
     prefix=settings.api.prefix,

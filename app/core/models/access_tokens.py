@@ -6,7 +6,7 @@ from sqlalchemy import Integer, ForeignKey
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped, mapped_column
 
-from .base import Base
+from app.core.models.base import Base
 
 
 class AccessToken(Base, SQLAlchemyBaseAccessTokenTable):

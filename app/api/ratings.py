@@ -16,13 +16,13 @@ router = APIRouter(
 )
 
 
-@router.post("/", response_model=RatingRead)
+@router.post("/", status_code=201)
 async def set_rating(
     user: Annotated[User, Depends(current_user)],
     rating_data: RatingCreate,
     session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
 ):
-    return await RatingService.rate_movie(
+    await RatingService.rate_movie(
         session=session,
         user_id=user.id,
         rating_data=rating_data,

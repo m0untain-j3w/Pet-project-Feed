@@ -2,7 +2,7 @@ from typing import Annotated
 from fastapi import Depends
 from app.core.models import db_helper
 from app.core.models import Rating
-from sqlalchemy import select
+from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
@@ -30,9 +30,9 @@ class RatingRepository:
         new_rating: int,
     ) -> None:
         await session.execute(
-            select(Rating)
+            update(Rating)
             .where(Rating.id == rating_id)
-            .update({Rating.rating: new_rating})
+            .values(rating=new_rating)
         )
         await session.commit()
 

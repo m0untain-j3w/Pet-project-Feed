@@ -7,7 +7,8 @@ from app.core.models.users import User
 from app.core.services.recommendation_service import RecommendationService
 from app.core.schemas.recommendation import MovieWithScore
 from app.api.dependencies.fastapi_users_conf import current_user
-from ml.content_based.inference.recommend import Recommender
+from ml.content_based.inference.recommend import CBRecommender
+from ml.collaborative.inference.recommend import CollabRecommender
 from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(
@@ -15,8 +16,10 @@ router = APIRouter(
     tags=["Recommendations"],
 )
 
-recommender = Recommender()
-service = RecommendationService(recommender=recommender)
+service = RecommendationService(
+    cb=CBRecommender(),
+    cf=CollabRecommender(),
+)
 
 
 @router.get("/", response_model=list[MovieWithScore])

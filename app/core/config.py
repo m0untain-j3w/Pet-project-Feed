@@ -17,7 +17,7 @@ class ApiConfig(BaseModel):
     auth: str = "/auth"
     movies: str = "/movies"
     ratings: str = "/ratings"
-
+    recommendations: str = "/recommendations"
     @property
     def bearer_token_url(self) -> str:
         # /api/auth/login
@@ -58,7 +58,7 @@ class Settings(BaseSettings):
     run: RunConfig = RunConfig()
     api: ApiConfig = ApiConfig()
     db: DatabaseConfig
-    model_path: Path = Path("core/models/model.joblib")
+    tfidf_model_path: Path = Path("ml/models/content_based/model.joblib")
     access_token: AccessToken
 
 

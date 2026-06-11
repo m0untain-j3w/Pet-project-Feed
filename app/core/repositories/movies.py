@@ -4,7 +4,7 @@ from fastapi import Depends
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.models import Movie, db_helper
+from app.core.models import Movie, db_helper
 
 
 class MovieRepository:
@@ -29,3 +29,13 @@ class MovieRepository:
             select(Movie).where(Movie.id == movie_id),
         )
         return result.scalar_one_or_none()
+
+    @staticmethod
+    async def get_by_ids(
+        session: AsyncSession,
+        ids: list[int],
+    ) -> list[Movie]:
+        result = await session.execute(
+            select(Movie).where(Movie.id.in_(ids))
+        )
+        return result.scalars().all()

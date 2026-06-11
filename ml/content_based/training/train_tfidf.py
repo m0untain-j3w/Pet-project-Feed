@@ -14,11 +14,11 @@ def train_tfidf(
 ) -> None:
     df = pd.read_parquet(features_path)
 
-    vectorier = TfidfVectorizer()
-    tfidf_matrix = vectorier.fit_transform(df["genres"])
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(df["genres"])
     similarity_matrix = cosine_similarity(tfidf_matrix)
 
-    model_path.parent.mkdir(parent=True, exist_ok=True)
+    model_path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(
         {
             "movie_ids": df["movie_id"].tolist(),
@@ -29,7 +29,7 @@ def train_tfidf(
     log.info(f"Trained TF-IDF on {len(df)} movies. Saved to {model_path}")
 
 
-if __name__ == "__name__":
+if __name__ == "__main__":
     setup_logging()
     log = logging.getLogger(__name__)
     train_tfidf()

@@ -58,6 +58,7 @@ class RecommendationService:
                     id=movie.id,
                     title=movie.title,
                     genres=movie.genres,
+                    year=movie.year,
                     score=r["score"],
                 )
             )

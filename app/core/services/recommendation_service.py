@@ -59,7 +59,7 @@ class RecommendationService:
                     title=movie.title,
                     genres=movie.genres,
                     year=movie.year,
-                    score=r["score"],
+                    score=round(r["score"], 3),
                 )
             )
         return enriched
